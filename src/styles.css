@@ -1,0 +1,67 @@
+html {
+  box-sizing: border-box;
+}
+
+*,
+*::before,
+*::after {
+  box-sizing: inherit;
+}
+body{
+  background-color: rgb(214, 211, 211);
+}
+.timer{
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+
+.field {    
+  margin-right: 50px;
+  margin-top: 50px;
+  border-radius: 2px;
+  padding: 40px;
+  background-color: rgb(29, 150, 29);
+  font-size: 30px;
+
+}
+
+
+/* 
+body{
+  text-align: center;
+  background: #00ECB9;
+  font-family: sans-serif;
+  font-weight: 100;
+}
+
+
+
+
+#clockdiv{
+  font-family: sans-serif;
+  color: #fff;
+  display: inline-block;
+  font-weight: 100;
+  text-align: center;
+  font-size: 30px;
+}
+
+#clockdiv > div{
+  padding: 10px;
+  border-radius: 3px;
+  background: #00BF96;
+  display: inline-block;
+}
+
+#clockdiv div > span{
+  padding: 15px;
+  border-radius: 3px;
+  background: #00816A;
+  display: inline-block;
+}
+
+.smalltext{
+  padding-top: 5px;
+  font-size: 16px;
+} */
