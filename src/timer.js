@@ -1,44 +1,69 @@
-const valueRef = document.querySelectorAll('.value');
-const daysRef = valueRef[0];
-const hoursRef = valueRef[1];
-const minsRef = valueRef[2];
-const secsRef = valueRef[3];
 
-timer();
-
-function timer() {
-const targetDate = new Date('Jul 17, 2021');
- setInterval(() => {
-   const currentTime = Date.now();    
-    const deltaTime = targetDate - currentTime;
-    updateClockface(deltaTime);
-  }, 1000);
-} 
-function updateClockface(time) {
-  
-  const days = pad(Math.floor(time / (1000 * 60 * 60 * 24)));
-  const hours = pad(Math.floor((time % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60)));
-  const mins = pad(Math.floor((time % (1000 * 60 * 60)) / (1000 * 60)));
-  const secs = pad(Math.floor((time % (1000 * 60)) / 1000));
- 
- daysRef.textContent = `${days}`;
- hoursRef.textContent = `${hours}`;
- minsRef.textContent = `${mins}`;
- secsRef.textContent = `${secs}`;
-  }
-  // добить символы (два символа 01, а не 1);
-  function pad(value) {
+  class CountdownTimer {
+    constructor({selector,targetDate}){
+    this.selector = selector;
+    this.targetDate = targetDate;
+     
+    const daysRef = document.querySelector(`${selector} .value[data-value="days"]`);
+    const hoursRef = document.querySelector(`${selector} .value[data-value="hours"]`);
+    const minsRef = document.querySelector(`${selector} .value[data-value="mins"]`);
+    const secsRef = document.querySelector(`${selector} .value[data-value="secs"]`);
+    
+       setInterval(() => {
+         const currentTime = Date.now();    
+          const deltaTime = targetDate - currentTime;
+          updateClockface(deltaTime);                  
+        }, 1000);
+      
+      function updateClockface(time) {  
+        const days = pad(Math.floor(time / (1000 * 60 * 60 * 24)));
+        const hours = pad(Math.floor((time % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60)));
+        const mins = pad(Math.floor((time % (1000 * 60 * 60)) / (1000 * 60)));
+        const secs = pad(Math.floor((time % (1000 * 60)) / 1000));
+        // timerRef.textContent = `${days}: ${hours}: ${mins}: ${secs}:`;        
+        daysRef.textContent = `${days}`;
+        hoursRef.textContent = `${hours}`;
+        minsRef.textContent = `${mins}`;
+        secsRef.textContent = `${secs}`;
+      }     
+      function pad(value) {
       return String(value).padStart(2, '0');
+      }
+    }
   }
-
-
   
+new CountdownTimer({
+  selector: '#timer-1',
+  targetDate: new Date('Jul 17, 2019'),
+});
 
 
 
+// updateClock(...[days,hours,mins,secs]);
 
+// function updateClock(...[days,hours,mins,secs]) {
+//   const timerRef = document.querySelector(selector);
+//   // console.log(days,hours,mins,secs);
+//   timerRef.insertAdjacentHTML('beforeend', `<div class="field">
+//  <span class="value" data-value="days">${days}:</span>
+//  <span class="label">Days</span>
+// </div>
 
+// <div class="field">
+//  <span class="value" data-value="hours">${hours}</span>
+// <span class="label">Hours</span>
+// </div>
 
+// <div class="field">
+//  <span class="value" data-value="mins">${mins}:</span>
+//  <span class="label">Minutes</span>
+// </div>
+
+// <div class="field">
+//  <span class="value" data-value="secs">${secs}</span>
+//  <span class="label">Seconds</span>
+// </div>`);
+// }
 
 
 // const timer = {
@@ -89,7 +114,34 @@ function updateClockface(time) {
 
 
 
+// / const daysRef = valueRef[0];
+// const hoursRef = valueRef[1];
+// const minsRef = valueRef[2];
+// const secsRef = valueRef[3];
 
+// timer();
+
+// function timer() {
+// const targetDate = new Date('Jul 17, 2021');
+//  setInterval(() => {
+//    const currentTime = Date.now();    
+//     const deltaTime = targetDate - currentTime;
+//     updateClockface(deltaTime);
+//   }, 1000);
+// } 
+// function updateClockface(time) {
+  
+//   const days = pad(Math.floor(time / (1000 * 60 * 60 * 24)));
+//   const hours = pad(Math.floor((time % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60)));
+//   const mins = pad(Math.floor((time % (1000 * 60 * 60)) / (1000 * 60)));
+//   const secs = pad(Math.floor((time % (1000 * 60)) / 1000));
+ 
+//  daysRef.textContent = `${days}`;
+//  hoursRef.textContent = `${hours}`;
+//  minsRef.textContent = `${mins}`;
+//  secsRef.textContent = `${secs}`;
+//   }
+  // добить символы (два символа 01, а не 1);
 
 
 // Плагин это класс CountdownTimer, экземпляр которого создает новый таймер с настройками.
